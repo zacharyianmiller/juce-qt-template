@@ -2,9 +2,14 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.15)
-project(JUCExQt VERSION 0.0.1)
 
-find_package(JUCE CONFIG REQUIRED)
+set(PROJECT_NAME juce-qt-template)
+project(${PROJECT_NAME} VERSION 0.0.1)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+add_subdirectory(libs/juce)
+
 find_package(Qt6
     REQUIRED COMPONENTS Core Gui
     OPTIONAL_COMPONENTS Quick
@@ -12,31 +17,31 @@ find_package(Qt6
 
 qt_standard_project_setup()
 
-juce_add_plugin(JUCExQt
+juce_add_plugin(${PROJECT_NAME}
     PLUGIN_MANUFACTURER_CODE TQtC
-    COMPANY_NAME "The Qt Company"
-    PRODUCT_NAME "JUCE x Qt"
-    PLUGIN_CODE Qtxj
-    BUNDLE_ID "io.qt.jucexqt"
+    COMPANY_NAME "Miller Labs DSP"
+    PRODUCT_NAME "juce-qt-template"
+    PLUGIN_CODE MLDSP
+    BUNDLE_ID "io.qt.juce-qt-template"
     FORMATS AU VST3 Standalone
     COPY_PLUGIN_AFTER_BUILD TRUE
 )
 
-target_sources(JUCExQt
+target_sources(${PROJECT_NAME}
     PRIVATE
         PluginProcessor.cpp
         PluginEditor.cpp
         QtComponent.cpp
 )
 
-target_compile_definitions(JUCExQt
+target_compile_definitions(${PROJECT_NAME}
     PUBLIC
         JUCE_WEB_BROWSER=0
         JUCE_USE_CURL=0
         JUCE_VST3_CAN_REPLACE_VST2=0
 )
 
-target_link_libraries(JUCExQt
+target_link_libraries(${PROJECT_NAME}
     PRIVATE
         juce::juce_audio_utils
         Qt6::Core
@@ -55,7 +60,7 @@ target_compile_options(juce_recommended_warning_flags INTERFACE
 )
 
 if(TARGET Qt6::Quick)
-    qt_add_resources(JUCExQt "qml" FILES main.qml)
-    qt_import_qml_plugins(JUCExQt)
-    target_link_libraries(JUCExQt PRIVATE Qt6::Quick)
+    qt_add_resources(${PROJECT_NAME} "qml" FILES main.qml)
+    qt_import_qml_plugins(${PROJECT_NAME})
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Quick)
 endif()

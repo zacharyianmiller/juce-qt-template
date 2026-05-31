@@ -13,7 +13,7 @@ Rectangle {
 
     Text {
         id: rotatingText
-        text: "Hello Qt 🥳"
+        text: "Hello, world!"
         font.pointSize: 36
         anchors.centerIn: parent
 

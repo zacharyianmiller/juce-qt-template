@@ -1,0 +1,6 @@
+# Directories
+/.vscode
+/build
+
+# Shell scripts
+launch_project.sh

@@ -1,0 +1,9 @@
+[submodule "libs/juce"]
+	path = libs/juce
+	url = git@github.com:juce-framework/JUCE.git
+[submodule "libs/qt6"]
+	path = libs/qt6
+	url = https://code.qt.io/qt/qt5.git
+[submodule "libs/libs/qt6"]
+	path = libs/libs/qt6
+	url = https://code.qt.io/qt/qt5.git
