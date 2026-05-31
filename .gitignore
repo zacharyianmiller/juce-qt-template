@@ -4,3 +4,6 @@
 
 # Shell scripts
 launch_project.sh
+
+# OS files
+.DS_Store
