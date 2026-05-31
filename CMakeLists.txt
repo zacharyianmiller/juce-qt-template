@@ -21,7 +21,7 @@ juce_add_plugin(${PROJECT_NAME}
     PLUGIN_MANUFACTURER_CODE TQtC
     COMPANY_NAME "Miller Labs DSP"
     PRODUCT_NAME "juce-qt-template"
-    PLUGIN_CODE MLDSP
+    PLUGIN_CODE MDSP
     BUNDLE_ID "io.qt.juce-qt-template"
     FORMATS AU VST3 Standalone
     COPY_PLUGIN_AFTER_BUILD TRUE
@@ -29,9 +29,9 @@ juce_add_plugin(${PROJECT_NAME}
 
 target_sources(${PROJECT_NAME}
     PRIVATE
-        PluginProcessor.cpp
-        PluginEditor.cpp
-        QtComponent.cpp
+        src/PluginProcessor.cpp
+        src/PluginEditor.cpp
+        src/QtComponent.cpp
 )
 
 target_compile_definitions(${PROJECT_NAME}
@@ -60,7 +60,7 @@ target_compile_options(juce_recommended_warning_flags INTERFACE
 )
 
 if(TARGET Qt6::Quick)
-    qt_add_resources(${PROJECT_NAME} "qml" FILES main.qml)
+    qt_add_resources(${PROJECT_NAME} "qml" FILES src/main.qml)
     qt_import_qml_plugins(${PROJECT_NAME})
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Quick)
 endif()
