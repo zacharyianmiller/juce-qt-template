@@ -4,11 +4,12 @@
 #pragma once
 
 #include <juce_audio_processors/juce_audio_processors.h>
+#include "dsp/SineOscillator.hpp"
 
 class AudioPluginAudioProcessor  : public juce::AudioProcessor
 {
 public:
-    AudioPluginAudioProcessor() = default;
+    AudioPluginAudioProcessor();
     ~AudioPluginAudioProcessor() override = default;
 
     const juce::String getName() const override { return JucePlugin_Name; }
@@ -16,7 +17,8 @@ public:
     bool hasEditor() const override { return true; }
     juce::AudioProcessorEditor* createEditor() override;
 
-    void prepareToPlay(double, int) override {}
+    void prepareToPlay(double, int) override;
+    bool isBusesLayoutSupported (const BusesLayout& layouts) const override;
     void processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
     void releaseResources() override {}
 
@@ -35,4 +37,5 @@ public:
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AudioPluginAudioProcessor)
+    SineOscillator osc[2];
 };

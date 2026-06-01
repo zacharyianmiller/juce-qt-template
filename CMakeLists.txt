@@ -32,6 +32,8 @@ target_sources(${PROJECT_NAME}
         src/PluginProcessor.cpp
         src/PluginEditor.cpp
         src/QtComponent.cpp
+        src/dsp/Processor.cpp
+        src/dsp/SineOscillator.cpp
 )
 
 target_compile_definitions(${PROJECT_NAME}
